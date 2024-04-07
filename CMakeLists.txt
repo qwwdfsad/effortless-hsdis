@@ -14,7 +14,7 @@ else()
 endif()
 
 # See capstone CMake in order to figure out the configuration flags
-if(${HSDIS_ARCH} STREQUAL ARM64)
+if(${HSDIS_ARCH} MATCHES ARM64 OR ${HSDIS_ARCH} MATCHES aarch64)
     set(CAPSTONE_ARM64_SUPPORT ON)
     set(HSDIS_CAPSTONE_ARCH CS_ARCH_ARM64)
     set(HSDIS_CAPSTONE_MODE CS_MODE_ARM)
@@ -81,4 +81,4 @@ set_target_properties(hsdis
 install(TARGETS hsdis)
 
 add_custom_command(TARGET hsdis POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E echo "Path to hsdis: $<TARGET_FILE:hsdis>")
+        COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --green --bold "Path to hsdis: $<TARGET_FILE:hsdis>")
