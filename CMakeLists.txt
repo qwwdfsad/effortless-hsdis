@@ -82,3 +82,10 @@ install(TARGETS hsdis)
 
 add_custom_command(TARGET hsdis POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E cmake_echo_color --green --bold "Path to hsdis: $<TARGET_FILE:hsdis>")
+
+# The grand comedy begins: cmake **differently** expands generator-expressions, meaining that
+# COMMENT properly works on OS X, but not on Linux, rendering the hint useless.
+# 'echo' either expands too much or escapes every freaking whitespace, not making this easier.
+# So the only reasonable option left is to use CMake script. It can't nicely color the output though
+add_custom_command(TARGET hsdis POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -D DIR=$<TARGET_FILE_DIR:hsdis> -D FILE=$<TARGET_FILE:hsdis> -P ${CMAKE_CURRENT_SOURCE_DIR}/Hint.cmake)
