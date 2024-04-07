@@ -39,7 +39,7 @@ A few reasons:
 * It's awkward to figure out what `Java` is on the machine. There is `$JAVA_HOME`, there are
  a multitude of versions nearby, and also a bunch of them come from SDKMAN in its own designated path.
 
-`/usr/lib` on Linux and `DYLD_LIBRARY_PATH` on OS X set in `.zshrc`, but it's up you, you'll figure this out.
+Adding hsdis to `/usr/lib` on Linux or exporting it with `DYLD_LIBRARY_PATH` on OS X via `.zshrc` should do the trick, but it's up you, you'll figure this out.
 
 ## I want even more automated installation
 
