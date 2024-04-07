@@ -86,6 +86,6 @@ add_custom_command(TARGET hsdis POST_BUILD
 # The grand comedy begins: cmake **differently** expands generator-expressions, meaining that
 # COMMENT properly works on OS X, but not on Linux, rendering the hint useless.
 # 'echo' either expands too much or escapes every freaking whitespace, not making this easier.
-# So the only reasonable option left is to use CMake script. It can't nicely color the output though
+# So the only reasonable option left is to use CMake script and color the hint manually.
 add_custom_command(TARGET hsdis POST_BUILD
         COMMAND ${CMAKE_COMMAND} -D DIR=$<TARGET_FILE_DIR:hsdis> -D FILE=$<TARGET_FILE:hsdis> -P ${CMAKE_CURRENT_SOURCE_DIR}/Hint.cmake)
