@@ -10,7 +10,7 @@ if(UNIX AND NOT APPLE)
 elseif (UNIX)
     # OS X
     set(HSDIS_HINT "You can make it avaialble to the linker (-> and JVM) with the following command:
-    echo 'export DYLD_LIBRARY_PATH=\\$DYLD_LIBRARY_PATH:${DIR}>' >> ~/.zshrc")
+    echo 'export DYLD_LIBRARY_PATH=\\$DYLD_LIBRARY_PATH:${DIR}' >> ~/.zshrc")
 else()
     set(HSDIS_HINT
             "I don't have a hint for your OS ¯\_(ツ)_/¯. Consider filing an issue?")
