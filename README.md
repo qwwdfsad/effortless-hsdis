@@ -18,7 +18,8 @@ Path to hsdis: /Users/qwwdfsad/workspace/effortless-hsdis/build/hsdis-aarch64.dy
 ```  
 and you are good to go.
 
-You'll need CMake and git on your machine, no other dependencies are required.
+You'll need CMake, git and any CXX compiler on your machine, no other dependencies are required.
+`build-essentials` will do.
 
 ## How does it work and where are the sources
 
