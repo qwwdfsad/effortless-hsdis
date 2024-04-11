@@ -44,7 +44,18 @@ Adding hsdis to `/usr/lib` on Linux or exporting it with `DYLD_LIBRARY_PATH` on 
 
 ## I want even more automated installation
 
-Please wait a bit, I'll figure something out with brew and `.deb`.
+### OS X
+
+You can use [hsdis formula](https://github.com/qwwdfsad/homebrew-tap?tab=readme-ov-file#hsdis):
+```
+brew tap qwwdfsad/tap
+brew install hsdis
+```
+Note that you'll still have to copy it to `$JAVA_HOME` or to export `LYDB_LIBRARY_PATH`. The installer will hint you on that.
+
+### Everything else (Linux probably)
+
+Please wait till I figure out the `.deb` package I guess.
 
 ## I don't want to build it at all
 
