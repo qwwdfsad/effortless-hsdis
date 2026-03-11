@@ -1,6 +1,9 @@
 set(ANSI_COLOR_GREEN_BOLD "\\033[1;32m")
 set(ANSI_COLOR_RESET "\\033[0m")
 
+execute_process(COMMAND bash -c "echo -e \"${ANSI_COLOR_GREEN_BOLD}Path to the hsdis: ${FILE}${ANSI_COLOR_RESET}\"")
+execute_process(COMMAND bash -c "echo")
+
 if(UNIX AND NOT APPLE)
     # Linux
     set(HSDIS_HINT "You can make it avaialble to the linker (-> and JVM) with the following command:
