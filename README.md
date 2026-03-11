@@ -12,27 +12,29 @@ cmake -B build . && cmake --build build --config Release
 It will print something like
 ```  
 ...  
-[100%] Linking C shared library hsdis-aarch64.dylib  
-Path to hsdis: /Users/qwwdfsad/workspace/effortless-hsdis/build/hsdis-aarch64.dylib  
-[100%] Built target hsdis  
+Path to the hsdis: /Users/qwwdfsad/workspace/effortless-hsdis/build/hsdis-aarch64.dylib
+
+You can make it available to the linker (-> and JVM) with the following command:
+    echo 'export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:/Users/qwwdfsad/workspace/effortless-hsdis/build' >> ~/.zshrc
+[100%] Built target hsdis
 ```  
 and you are good to go.
 
 You'll need CMake, git and any CXX compiler on your machine, no other dependencies are required.
-`build-essentials` will do.
+`build-essentials` will do. You may also consider [brew](#os-x) package.
 
 ## How does it work and where are the sources
 
-The project provides a [CmakeLists.txt](CMakeLists.txt) build file with no other third-party sources.
+The project provides a [CMakeLists.txt](CMakeLists.txt) build file with no other third-party sources.
 
 It checks out hsdis sources from the OpenJDK repository (right now -- [OpenJDK 21 release tag](https://github.com/openjdk/jdk21/releases/tag/jdk-21-ga))   
-and [Capstone](https://github.com/capstone-engine/capstone) disasambler, builds one against the other and prints  
+and [Capstone](https://github.com/capstone-engine/capstone) disassembler, builds one against the other and prints 
 the path to the resulting hsdis that you can later put into the corresponding `$JAVA_HOME/lib/server/`, `/usr/lib` on Linux or just add it to the  `LD_LIBRARY_PATH`.
 
 The cool part -- this repo controls no sources and takes it from the official repositories, thus relieving us from verifying that the sources/binaries are the original ones,
 as well as updating them manually.
 
-## Why can't you install hsdis for my Java
+## Why can't you install hsdis right into my Java
 
 A few reasons:
 
@@ -40,7 +42,7 @@ A few reasons:
 * It's awkward to figure out what `Java` is on the machine. There is `$JAVA_HOME`, there are
  a multitude of versions nearby, and also a bunch of them come from SDKMAN in its own designated path.
 
-Adding hsdis to `/usr/lib` on Linux or exporting it with `DYLD_LIBRARY_PATH` on OS X via `.zshrc` should do the trick, but it's up you, you'll figure this out.
+Adding hsdis to `/usr/lib` on Linux or exporting it with `DYLD_LIBRARY_PATH` on OS X via `.zshrc` should do the trick, but it's up to you, you'll figure this out.
 
 ## I want even more automated installation
 
@@ -51,7 +53,7 @@ You can use [hsdis formula](https://github.com/qwwdfsad/homebrew-tap?tab=readme-
 brew tap qwwdfsad/tap
 brew install hsdis
 ```
-Note that you'll still have to copy it to `$JAVA_HOME` or to export `LYDB_LIBRARY_PATH`. The installer will hint you on that.
+Note that you'll still have to copy it to `$JAVA_HOME` or to export `DYLD_LIBRARY_PATH`. The installer will hint you on that.
 
 ### Everything else (Linux probably)
 

@@ -39,11 +39,20 @@ set(HSDIS_CAPSTONE_REF 097c04d9413c59a58b00d4d1c8d5dc0ac158ffaa
         CACHE STRING "Capstone git ref. Current: version 5.0.1, capstone-engine/capstone")
 
 # Capstone build
-include(FetchContent)
-FetchContent_Declare(
-        capstone
-        GIT_REPOSITORY https://github.com/capstone-engine/capstone    GIT_TAG ${HSDIS_CAPSTONE_REF})
-FetchContent_MakeAvailable(capstone)
+# USE_SYSTEM_CAPSTONE: when ON, use system-installed capstone via pkg-config (e.g. Homebrew).
+# When OFF (default), capstone is fetched and built from source via FetchContent.
+option(USE_SYSTEM_CAPSTONE "Use system-installed capstone instead of FetchContent" OFF)
+if(USE_SYSTEM_CAPSTONE)
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(CAPSTONE_PKG REQUIRED IMPORTED_TARGET capstone)
+    add_library(capstone::capstone ALIAS PkgConfig::CAPSTONE_PKG)
+else()
+    include(FetchContent)
+    FetchContent_Declare(
+            capstone
+            GIT_REPOSITORY https://github.com/capstone-engine/capstone    GIT_TAG ${HSDIS_CAPSTONE_REF})
+    FetchContent_MakeAvailable(capstone)
+endif()
 
 # Kudos to https://jornvernee.github.io/hsdis/2022/04/30/hsdis.html for this patch
 
