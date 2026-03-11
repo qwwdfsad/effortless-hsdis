@@ -50,8 +50,7 @@ Adding hsdis to `/usr/lib` on Linux or exporting it with `DYLD_LIBRARY_PATH` on 
 
 You can use [hsdis formula](https://github.com/qwwdfsad/homebrew-tap?tab=readme-ov-file#hsdis):
 ```
-brew tap qwwdfsad/tap
-brew install hsdis
+brew install qwwdfsad/tap/hsdis
 ```
 Note that you'll still have to copy it to `$JAVA_HOME` or to export `DYLD_LIBRARY_PATH`. The installer will hint you on that.
 
